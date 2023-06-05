@@ -1,0 +1,100 @@
+<!-- 
+    Title: palindrome.html
+    Author: Laurel Condon
+    Date: 2 June 2023
+    Description: HTML page for Palindrome
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <title>WEB 330 - Enterprise JavaScript II</title>
+
+        <!-- Link to external stylesheets, Google Fonts, and Font Awesome -->
+        <link rel="stylesheet" href="site.css">
+        <link rel="stylesheet" href="theme.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<div class="light-theme">
+    <!--Display light and dark theme-->
+    <i onclick="toggleMode(this)" id="icon-mode" class="fa fa-toggle-off pull-right"
+        style="font-size: 28px;"><span id="icon-text"></span></i>
+        <br>
+
+<div id="assign-container">
+    <h1 class="app-header">Welcome to the Palindrome App!</h1>
+
+    <div class="assign-content">
+    <div class="card">
+        <div class="card-title">Palindrome Checker</div>
+        <div class="card-content">
+            <div class="form">
+                <div class="form-field">
+                    <label for="txtPhraseValue">Phrase value</label>
+                    <input type="text" class="input" id="txtPhraseValue" name="phraseValue" />
+                </div>
+                <div class="form-field">
+                    <button class="btn btn-primary" id="btnCheckPhrase">Check Phrase</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="assign-container">
+    <div class="assign-content">
+
+        <div class="card">
+            <div class="card-title">Palindrome Results</div>
+            <div class="card-content">
+              <div id="assign-results-header"></div>
+              <div class="assign-results-text" id="assign-results"></div>  
+            </div>
+        </div>
+        <a href="https://lcondon14.github.io/web-330/" class="return-home">Return</a>
+    </div>
+    <script src="condon-palindrome.js"></script>
+</div>
+</div>
+
+<script>
+    setDefaultTheme(); // To set default theme to light if one is not set in the browsers localStorage
+    /**
+    * Function to switch the users selected website theme	
+    * @param x (this instance)
+    */
+    function toggleMode(x) { 
+        let colorTheme = document.body.classList; // To get the body's css class
+        let iconMode = x.classList; // To get the current classes assigned to the triggered button
+
+        /**
+         * If current body class is set to light-theme, update to preference dark-theme in browsers local storage 
+        */
+        if (colorTheme.value === "light-theme") { 
+            localStorage.clear(); // Clears local storage
+            localStorage.setItem("mode", "dark-theme"); // Sets to dark theme
+            localStorage.setItem("iconMode", "fa-toggle-on"); // Toggles icon mode
+            localStorage.setItem("iconText", "Dark Mode"); //Toggles page to dark mode
+        } else {
+        /**
+        * If current body class is set to dark-theme, update the user's preference to the light-theme in browsers local storage
+        */
+            localStorage.clear(); // Begins by clearing local storage
+            localStorage.setItem("mode", "light-theme"); // Sets to light-theme
+            localStorage.setItem("iconMode", "fa-toggle-off"); // Toggles icon mode to light
+            localStorage.setItem("iconText", "Light Mode"); // Toggles page to light mode
+        }
+
+        /**
+        * Apply the updated selection to the HTML page elements
+        */
+        colorTheme.value = localStorage.getItem("mode"); // Applies new mode to html page
+        iconMode.value = `fa ${localStorage.getItem("iconMode")} pull-right`; 
+        document.getElementById("icon-text").innerHTML = localStorage.getItem("iconText"); // Stores in local storage
+    }
+</script> 
+
+</html>        
