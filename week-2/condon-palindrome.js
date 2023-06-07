@@ -8,7 +8,7 @@
 // Function that gets current date
 function getTodaysDate() {
     const date = new Date().toLocaleDateString('en-US');
-    return date; // Returns the date
+    return date;
 }
 // Function that declares length of string
 function getLength(str) {
