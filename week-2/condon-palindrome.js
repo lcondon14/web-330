@@ -7,8 +7,7 @@
 
 // Function that gets current date
 function getTodaysDate() {
-    const date = new Date().toLocaleDateString('en-US');
-    return date;
+   return new Date().toLocaleDateString();
 }
 // Function that declares length of string
 function getLength(str) {
@@ -16,45 +15,31 @@ function getLength(str) {
 }
 // Declares the reverse of the string
 function reverse(str) {
-    let string = str.split(""); 
-    string = string.reverse(); 
-    string = string.join(""); 
-
-    return string; 
+   return str.split("").reverse().join(""); 
 }
-// Function to reverse the string
-    function reverse(str) {
-    let string = str.split(""); 
-    string = string.reverse(); 
-    string = string.join("");
 
-    return string; 
-}
 // declares if function is a palindrome
-function isPalindrome(str) {
-    let palindrome = false; 
-    if (reverse(str) == str) {
-        palindrome = true; 
-    }
-    return palindrome; 
+function isPalindrome(str) { 
+    if (reverse(str) === str) return true; 
+    return false;
 }
 
 // Onclick for palindrome test
 document.getElementById("btnCheckPhrase").onclick = function() {
-    let txtPhraseValue = document.getElementById('txtPhraseValue').value.toLowerCase();
-    let assignResultsHeader = document.getElementById('assign-results-header'); 
-    let assignResults = document.getElementById('assign-results'); 
-    let len = getLength(txtPhraseValue); 
-    let reversePhrase = reverse(txtPhraseValue);
+    const txtPhrase = document.getElementById('txtPhrase').value;
+    const assignResultsText = document.getElementById('assign-results-text'); 
+    const assignResults = document.getElementById('assign-results'); 
+    const len = getLength(txtPhrase);
+    const today = getTodaysDate(); 
+    const reversePhrase = reverse(txtPhrase);
 
-    let header = "Date: " + today + `<br/>`+ "Original Phrase: " + txtPhraseValue + `<br/>`+ "Reversed Phrase: "
+    let results = "Date: " + today + `<br/>`+ "Original Phrase: " + txtPhrase + `<br/>`+ "Reversed Phrase: "
         + reversePhrase + `<br/>`+ "Phrase Length: " + len; 
 
-    assignResultsHeader.innerHTML = header;
+    assignResultsText.innerHTML = results;
     // If else statement for palindrome results
-    if (isPalindrome(txtPhraseValue)) {
-        assignResults.innerHTML = txtPhraseValue + ` <b><u>is</u></b>` + " a palindrome!";  
-    } else {
-        assignResults.innerHTML = txtPhraseValue + ` <b><u>is not</u></b>` + " a palindrome!"; 
+    if (isPalindrome(txtPhrase)) 
+        return (assignResults.innerHTML = `${txtPhrase} +  <b><u>is</u></b> + a palindrome!`);  
+    else 
+        return (assignResults.innerHTML = `${txtPhrase} +  <b><u>is not</u></b> + a palindrome!`); 
     }
-}

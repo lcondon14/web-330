@@ -12,9 +12,9 @@
         <title>WEB 330 - Enterprise JavaScript II</title>
 
         <!-- Link to external stylesheets, Google Fonts, and Font Awesome -->
-        <link rel="stylesheet" type="text/css" href="../site.css">
-        <link rel="stylesheet" type="text/css" href="../theme.css">
-        <link rel="stylesheet" type="text/css" href="condon-palindrome.css"
+        <link href="../site.css" rel="stylesheet" type="text/css">
+        <link href="../theme.css" rel="stylesheet" type="text/css">
+        <link href="condon-palindrome.css" rel="stylesheet" type="text/css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -36,8 +36,8 @@
         <div class="card-content">
             <div class="form">
                 <div class="form-field">
-                    <label for="txtPhraseValue">Phrase value</label>
-                    <input type="text" class="input" id="txtPhraseValue" name="txtPhraseValue">
+                    <label for="txtPhrase">Phrase value</label>
+                    <input type="text" class="input" id="txtPhrase" name="txtPhrase">
                 </div>
                 <div class="form-field">
                     <button class="btn btn-primary" id="btnCheckPhrase">Check Phrase</button>
@@ -46,22 +46,23 @@
         </div>
     </div>
 </div>
+</div>
 <div class="assign-container">
     <div class="assign-content">
 
         <div class="card">
             <div class="card-title">Palindrome Results</div>
             <div class="card-content">
-              <div id="assign-results-header"></div>
-              <div class="assign-results-text" id="assign-results"></div>  
+              <div id="assign-results-results"></div>
+              <span id="assign-results-text"></span> 
+              <span id="assign-results"></span>  
             </div>
         </div>
         <a href="https://lcondon14.github.io/web-330/" class="return-home">Return</a>
     </div>
-    <script src="condon-palindrome.js"></script>
 </div>
 </div>
-</div>
+
 <script>
     setDefaultTheme(); // To set default theme to light if one is not set in the browsers localStorage
     /**
@@ -97,5 +98,5 @@
         document.getElementById("icon-text").innerHTML = localStorage.getItem("iconText"); // Stores in local storage
     }
 </script> 
-
+<script src="condon-palindrome.js"></script>
 </html>        
