@@ -12,8 +12,8 @@
         <title>WEB 330 - Enterprise JavaScript II</title>
 
         <!-- Link to external stylesheets, Google Fonts, and Font Awesome -->
-        <link rel="stylesheet" href="site.css">
-        <link rel="stylesheet" href="theme.css">
+        <link rel="stylesheet" href="../site.css">
+        <link rel="stylesheet" href="../theme.css">
         <link rel="stylesheet" href="condon-palindrome.css"
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -65,14 +65,13 @@
     setDefaultTheme(); // To set default theme to light if one is not set in the browsers localStorage
     /**
     * Function to switch the users selected website theme	
-    * @param x (this instance)
     */
     function toggleMode(x) { 
-        let colorTheme = document.body.classList; // To get the body's css class
-        let iconMode = x.classList; // To get the current classes assigned to the triggered button
+        let colorTheme = document.body.classList; 
+        let iconMode = x.classList; 
 
         /**
-         * If current body class is set to light-theme, update to preference dark-theme in browsers local storage 
+         If current body class is set to light-theme, update to preference dark-theme in browsers local storage 
         */
         if (colorTheme.value === "light-theme") { 
             localStorage.clear(); // Clears local storage
@@ -81,7 +80,7 @@
             localStorage.setItem("iconText", "Dark Mode"); //Toggles page to dark mode
         } else {
         /**
-        * If current body class is set to dark-theme, update the user's preference to the light-theme in browsers local storage
+         If current body class is set to dark-theme, update the user's preference to the light-theme in browsers local storage
         */
             localStorage.clear(); // Begins by clearing local storage
             localStorage.setItem("mode", "light-theme"); // Sets to light-theme
