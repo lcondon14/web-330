@@ -41,7 +41,7 @@ function isPalindrome(str) {
 
 // Onclick for palindrome test
 document.getElementById("btnCheckPhrase").onclick = function() {
-    let txtPhraseValue = document.getElementById('txtPhrase').value.toLowerCase();
+    let txtPhraseValue = document.getElementById('txtPhraseValue').value.toLowerCase();
     let assignResultsHeader = document.getElementById('assign-results-header'); 
     let assignResults = document.getElementById('assign-results'); 
     let len = getLength(txtPhraseValue); 
