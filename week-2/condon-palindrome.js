@@ -41,20 +41,20 @@ function isPalindrome(str) {
 
 // Onclick for palindrome test
 document.getElementById("btnCheckPhrase").onclick = function() {
-    let txtPhrase = document.getElementById('txtPhrase').value.toLowerCase();
+    let txtPhraseValue = document.getElementById('txtPhrase').value.toLowerCase();
     let assignResultsHeader = document.getElementById('assign-results-header'); 
     let assignResults = document.getElementById('assign-results'); 
-    let len = getLength(txtPhrase); 
-    let reversePhrase = reverse(txtPhrase);
+    let len = getLength(txtPhraseValue); 
+    let reversePhrase = reverse(txtPhraseValue);
 
-    let header = "Date: " + today + `<br/>`+ "Original Phrase: " + txtPhrase + `<br/>`+ "Reversed Phrase: "
+    let header = "Date: " + today + `<br/>`+ "Original Phrase: " + txtPhraseValue + `<br/>`+ "Reversed Phrase: "
         + reversePhrase + `<br/>`+ "Phrase Length: " + len; 
 
     assignResultsHeader.innerHTML = header;
     // If else statement for palindrome results
-    if (isPalindrome(txtPhrase)) {
-        assignResults.innerHTML = txtPhrase + ` <b><u>is</u></b>` + " a palindrome!"; // Displays string phrase is true 
+    if (isPalindrome(txtPhraseValue)) {
+        assignResults.innerHTML = txtPhraseValue + ` <b><u>is</u></b>` + " a palindrome!";  
     } else {
-        assignResults.innerHTML = txtPhrase + ` <b><u>is not</u></b>` + " a palindrome!"; // Displays string phrase is false 
+        assignResults.innerHTML = txtPhraseValue + ` <b><u>is not</u></b>` + " a palindrome!"; 
     }
 }
