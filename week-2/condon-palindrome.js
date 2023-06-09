@@ -34,12 +34,13 @@ document.getElementById("btnCheckPhrase").onclick = function() {
     const reversePhrase = reverse(txtPhrase);
 
     let results = "Date: " + today + `<br/>`+ "Original Phrase: " + txtPhrase + `<br/>`+ "Reversed Phrase: "
-        + reversePhrase + `<br/>`+ "Phrase Length: " + len; 
+        + reversePhrase + `<br/>`+ "Phrase Length: " + len;
 
     assignResultsText.innerHTML = results;
+    
     // If else statement for palindrome results
     if (isPalindrome(txtPhrase)) 
-        return (assignResults.innerHTML = `${txtPhrase} +  <b><u>is</u></b> + a palindrome!`);  
+        return (assignResults.innerHTML = `${txtPhrase} <b><u>is</u></b> a palindrome!`);  
     else 
-        return (assignResults.innerHTML = `${txtPhrase} +  <b><u>is not</u></b> + a palindrome!`); 
+        return (assignResults.innerHTML = `${txtPhrase} <b><u>is not</u></b> a palindrome!`); 
     }

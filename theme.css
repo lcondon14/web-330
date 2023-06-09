@@ -13,7 +13,7 @@
     background-color: var(--card-background-color);
 }
 .card-title {
-    font-size: 16px;
+    font-size: 20px;
  /** Style changed to variable for assignment 1.3 */   
     color: var(--card-title-color);
     font-weight: 400;
