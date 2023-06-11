@@ -25,10 +25,10 @@
 <div class="light-theme">
     <!--Display light and dark theme-->
     <i onclick="toggleMode(this)" id="icon-mode" class="fa fa-toggle-off pull-right"
-        style="font-size: 28px;"><span id="icon-text"></span></i>
+        style="font-size: 28px;"><span id="icon-text"></span></i><br>
         <br>
         <div id="assign-container">
-            <h1 class="app-header">Welcome to the Restaurant App!</h1>
+            <div class="app-header">Welcome to the Restaurant App!</div>
        
             <div class="assign-content">
                 <div class="card">
@@ -102,32 +102,82 @@
                                 <label for="pie">
                                     <input type="checkbox" name="pie" id="pie" value="3.80">Apple Pie ($3.80)
                                 </label><br>
+                                <!-- Button for placing order -->
+                            <button class="btn-primary btn full-width" id="btnOrder">Place Order</button>
                             </div>
                         </div>
-                        <!-- Button for placing order -->
-                        <div class="form-field">
-                            <button class="btn-primary btn full-width" id="btnOrder">Place Order</button>
                         </div>
                     </div>
                     <!-- Returns to landing Page -->
                     <a href="https://lcondon14.github.io/web-330/" class="return-home">Return</a>
                 </div>
             </div>
-            <!-- Card to display order total and items -->
-            <div class="assign-content">
-                <div class="card">
-                    <div class="card-title">Order Summary</div>
-                    <div id="assign-results-header"></div>
-                    <div class="card-content">
-                        <div class="assign-results-text">
-                            <div id="order-total">
+        </div>    
 
-                            </div>
-                        </div>
-                    </div>
+            <!-- Card to display order total and items -->
+         </div>  
+           <div class="assign-container">
+                <div class="assign-content">
+                    <div class="card">
+                     <div class="card-title">Order Summary</div>
+                         <div class="card-content">
+                             <div id="assign-results-header"></div>
+                                <div class="assign-results-text" id="order-total"></div>
+                    </div> 
                 </div>
+             </div>
+             <script type="module">
+                // Module that imports the different .js functions into one file
+                    import { Bill, Beverage, Appetizer, MainCourse, Dessert } from "./index.js";
+               
+                // onClick function for the order button
+                    document.getElementById("btnOrder").onclick = function() {
+            
+                // variables declared to different menu sections
+                    const beveragesx = document.getElementById('beverages')
+                    const beverages = beveragesx.getElementByTagNameName('input');
+            
+                    const appetizersx = document.getElementById('appetizer')
+                    const appetizers = appetizersx.getElementByTagName('input');
+                    
+                    const mainCoursesx = document.getElementById('main-courses')
+                    const mainCourses = mainCoursesx.getElementByTagName('input');
+            
+                    const dessertsx = document.getElementById('desserts')
+                    const desserts = dessertsx.getElementsByTagName('input');
+            
+                // Creates new Bill
+                    let bill = new Bill(beverages, appetizers, mainCourses, desserts);
+                // Loops that checks each section for selected options
+                for (let beverage of beverages) {
+                    if (beverage.checked) {
+                        bill.addBeverage(new Beverage(beverage.name, beverage.value))
+                    }
+                }
+                for (let appetizer of appetizers) {
+                    if (appetizer.checked){
+                        bill.addAppertizer(new Appetizer(appetizer.name, appetizer.value))
+                    }
+                }
+                for (let mainCourse of mainCourses) {
+                    if (mainCourse.checked) {
+                        bill.addMainCourse(new MainCourse(mainCourse.name, mainCourse.value))
+                    }
+                }
+            
+                for (let dessert of desserts) {
+                    if (dessert.checked) {
+                        bill.addDessert(new Dessert(dessert.name, dessert.value))
+                    }
+                }
+
+                let total = bill.getTotal();
+                // function to display Order total
+                document.getElementById("order-total").innerHTML = `Your order total is ${bill.getTotal().toFixed(2)}`;
+                    }
+                </script>
             </div>
-        </div>      
+             
 <script>
     setDefaultTheme(); /** To set default theme to light if one is not set in the browsers localStorage */
     /**
@@ -164,54 +214,6 @@
     }
     </script>
     
-    <script type="module">
-    // Module that imports the different .js functions into one file
-        import { Bill, Beverage, Appetizer, MainCourse, Dessert } from "./index.js";
    
-    // onClick function for the order button
-        document.getElementById("btnOrder").onclick = function() {
-
-    // Assigns variables to different menu sections
-        const beveragesx = document.getElementById("beverages")
-        const beverages = beveragesx.getElementByTagNameName('input');
-
-        const appetizersx = document.getElementById("appetizers")
-        const appetizers = appetizersx.getElementByTagName('input');
-        
-        const mainCoursesx = document.getElementById("main-courses")
-        const mainCourses = mainCoursesx.getElementByTagName('input');
-
-        const dessertsx = document.getElementById("desserts")
-        const desserts = dessertsx.getElementsByTagName('input');
-
-    // Creates new Bill
-        let bill = new Bill();
-    // Loops that checks each section for selected options
-    for (let beverage of beverages){
-        if(beverage.checked) {
-            bill.addBeverage(new Beverage(beverage.name, beverage.value))
-        }
-    };
-    for (let appetizer of appetizers) {
-        if(appetizer.checked){
-            bill.addAppertizer(new Appetizer(appetizer.name, appetizer.value))
-        }
-    };
-    for (let mainCourse of mainCourses) {
-        if (mainCourse.checked) {
-            bill.addMainCourse(new MainCourse(mainCourse.name, mainCourse.value))
-        }
-    };
-
-    for (let dessert of desserts) {
-        if (dessert.checked) {
-            bill.addDessert(new Dessert(dessert.name, dessert.value))
-        }
-    };
-
-    // function to display Order total
-    document.getElementById('order-total').innerHTML = `Your order total is ${bill.getTotal().toFixed(2)}`;
-        }
-    </script>
 </body>
 </html>

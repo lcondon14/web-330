@@ -5,7 +5,7 @@
  * Description: beverage.js for restaurant app
  */
 
-import { Product } from "./condon-product";
+import { Product } from "./product.js";
 
 export class Beverage extends Product {
     constructor(name, price)

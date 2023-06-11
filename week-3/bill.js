@@ -5,27 +5,34 @@
  * Description: bill.js page for restaurant app
  */
 
+// Class declared for the Bill
 export class Bill {
-    _beverages = [];
-    _appetizers = [];
-    _mainCourses = [];
-    _desserts = [];
-
+    constructor() {
+       this. _beverages = [];
+       this. _appetizers = [];
+       this. _mainCourses = [];
+       this._desserts = [];   
+    }
+// Adds new beverage
     addBeverage(beverage) {
         this._beverages.push(beverage);
     }
+// adds new appetizer    
     addAppetizer(appetizer) {
         this._appetizers.push(appetizer);
     }
+// adds new main course    
     addMainCourse(mainCourse) {
         this._mainCourses.push(mainCourse);
     }
+//adds new dessert    
     addDessert(dessert) {
         this._desserts.push(dessert);
     }
-
+// function to get total of items 
     getTotal() {
         let total = 0;
+
         let beverageTotal = this._beverages.forEach(function(beverage) {
             total += parseFloat(beverage.price);
         })
@@ -39,6 +46,8 @@ export class Bill {
             total += parseFloat(dessert.price);
         })
 
-        return total
+        return total.toFixed(2);
     }
 }
+
+
