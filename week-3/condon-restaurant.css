@@ -1,0 +1,14 @@
+/**
+    Title:  palindrome.css
+    Author: Laurel Condon
+    Date: 9 June 2023
+    Description: css page for restaurant app
+*/
+
+.grid-container {
+    display: grid;
+    padding-bottom: 10px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+
+}
