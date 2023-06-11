@@ -14,7 +14,7 @@
    
 }
 .card-title {
-    font-size: 20px;
+    font-size: 24px;
  /** Style changed to variable for assignment 1.3 */   
     color: var(--card-title-color);
     font-weight: 400;
