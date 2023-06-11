@@ -41,6 +41,7 @@
   /** font size and margin added for week-3 */
     font-size: 30px;
     margin-bottom: 20px;
+    text-align: center;
 }
 
 /** Additional styles added for Assignment 1.2 */
@@ -76,3 +77,4 @@
     text-align: center;
     font-size: 28px;
 }
+
