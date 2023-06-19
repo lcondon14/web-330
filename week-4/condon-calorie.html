@@ -4,3 +4,63 @@
     Date: 18 June 2023
     Description: HTML for calorie
 -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <title>WEB 330 - Enterprise JavaScript II</title>
+
+        <!-- Link to external stylesheets, Google Fonts, and Font Awesome -->
+        <link href="../site.css" rel="stylesheet" type="text/css">
+        <link href="../theme.css" rel="stylesheet" type="text/css">
+        <link href="condon-calorie.css" rel="stylesheet" type="text/css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="../theme.js"></script>
+</head>
+<div class="light-theme">
+    <!--Display light and dark theme-->
+    <i onclick="toggleMode(this)" id="icon-mode" class="fa fa-toggle-off pull-right"
+        style="font-size: 28px;"><span id="icon-text"></span></i>
+        <br>
+        <div class="assing-container">
+            <div class="assign-content">
+                <div class="card-title"></div>
+                <h1 class="Welcome to the Calorie App!"></h1>
+                <!-- Calorie Search area -->
+                <div class="card">
+                    <div class="card-title">Calorie Search Form</div>
+                    <div class="card-content">
+                        <div class="form">
+                            <div class="form-field">
+                                <label for="txtFoodItem">Enter food item:</label>
+                                <input type="text" id="txtFoodItem">
+                                <br>
+                                <span id="foodList"></span>
+                            </div>
+                            <div class="form-field">
+                                <button class="btn btn-primary full-width" id="btnSearch">Search</button>
+                            </div>
+                        </div>
+                    </div>
+                </div><br>
+                <!-- Link to return home -->
+                <a href="../index.html">Return</a>
+            </div>
+        </div>
+        <!-- Result area-->
+        <div class="assign-container">
+            <div class="assign-content">
+                <div class="card">
+                    <div class="card-title">Search Results</div>
+                    <div class="card-content" id="searchResults">
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </body>
+    </html>
+            
