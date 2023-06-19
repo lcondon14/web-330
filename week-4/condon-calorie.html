@@ -61,6 +61,38 @@
                 </div>
             </div>
         </div>
+     <script>
+        // Imports from calorie-converter.js 
+        import { CalorieConverter } from "./calorie-convert.js";
+        // Onclick function for button search
+        let txtFoodItemEl = document.getElementById("txtFoodItem");
+        document.getElementById("btnSearch").onclick = function() {
+            let txtFoodItem = txtFoodItemEl.value;
+            if (!txtFoodItem == "") {
+                let foods = CalorieConverter.find(txtFoodItem.toLowerCase());
+                let tableData = "<table class='table table-hover'>";
+                tableData += "<tr>";
+                tableData += "<th>Name</th>";
+                tableData += "<th>Calories</th>";
+                tableData += "</tr>";
+                for (const food of foods) {
+                    tableData += "<tr>";
+                    tableData += "<td>" + food.name + "</td>";
+                    tableData += "<td>" + food.calories + "</td>";
+                    tableData += "</tr>";
+                }
+                tableData += "</table>";
+                document.getElementById("searchResults").innerHTML = tableData;
+              
+            }
+        };
+          // Event Listener for keyup
+          txtFoodItemEl.addEventListener('keyup', function(event) {
+            if (event.key === 'Enter') {
+                document.getElementById('btnSearch').click();
+            } 
+                })
+     </script>   
     </body>
     </html>
             

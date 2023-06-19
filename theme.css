@@ -90,6 +90,13 @@ body.light-theme {
     --btn-hover-background-color: #d6a800;
     --btn-hover-color: #4f3674;
     --input-border-color: #ccc;
+    /* Added for week 4 assignment */
+
+   --table-header-background-color: #4F3674;
+   --table-header-color: #fff;
+   --table-border-color: #ddd;
+   --table-hover-background-color: #D6A800;
+   --table-hover-color: #4F3674;
   }
 
   body.dark-theme {
@@ -110,6 +117,12 @@ body.light-theme {
     --btn-hover-background-color: #7d4787;
     --btn-hover-color: #fff;
     --input-border-color: #303030;
+    /* Added for week 4 assignment */
+    --table-header-background-color: #D176E1;
+   --table-header-color: #fff;
+   --table-border-color: #303030
+   --table-hover-background-color: #7D4787;
+   --table-hover-color: #fff;
   }
   * {
     font-family: 'Oswald', Verdana, Arial, sans-serif;
@@ -144,4 +157,32 @@ h2, h3, h4 {
   padding: 10px;
   border: solid 1px;
   border-color: var(--heading-border-color);
+}
+
+/* Table Styles added for week 4 */
+.table {
+  border-collapse: collapse;
+  width: 20%;
+  margin-bottom: 30px;
+}
+
+.table th {
+  text-align: left;
+  background-color: var(--table-header-background-color);
+  color: var(--table-header-color);
+}
+
+.table td,
+th {
+    border: 1px solid var(--table-border-color);
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+.table-hover tr:hover {
+  background-color: var(--table-hover-background-color);
+  color: var(--table-hover-color);
+  cursor: pointer;
 }
