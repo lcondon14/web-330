@@ -1,0 +1,13 @@
+/*
+Title: condon-bobs-auto-repair.css
+Author: Laurel Condon
+Date: 21 June 2023
+Description: Css styles for Bob's Auto Repair Assignment
+*/
+
+#cart-message {
+    text-align: center;
+    color: #df546a;
+    font-size: 12px;
+    font-style: italic;
+}

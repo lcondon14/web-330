@@ -1,0 +1,160 @@
+<!--
+    Title: condon-bobs-auto-repair.html
+    Author: Laurel Condon
+    Date: 21 June 2023
+    Description: html page for Bob's Auto Repair
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript II: Bob's Auto Repair</title>
+
+
+        <!-- Link to external stylesheets, Google Fonts, and Font Awesome -->
+        <link href="../site.css" rel="stylesheet" type="text/css">
+        <link href="../theme.css" rel="stylesheet" type="text/css">
+        <link href="condon-bobs-auto-repair.css" rel="stylesheet" type="text/css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="../theme.js"></script>
+</head>
+
+    <body class="light-theme">
+        <!-- Displays light and dark themes -->
+        <i onclick="toggleMode(this)" id="icon-mode" class="fa fa-toggle-off pull-right"
+            style="font-size: 28px;"><span id="icon-text"></span></i><br>
+        <div class="assign-container">
+            <div class="app-header">Welcome to Bob's Automotive Repair Shop!</br>
+            <div class="card">
+                <div class="card-title">Product Listing</div>
+                <div id="cart-component">
+                    <span id="cartIcon" class="fa fa-shopping-cart"></span>
+                    </div>
+                
+                   <div class="form">
+                    <div class="form-field">
+                        Choose a product:
+                        <select id="productList" class="drop-down-menu">
+                            <option value="Select">-- Select --</option>
+                            <option value="19.99">Oil Change - $19.99</option>
+                            <option value="18.44">Filter Replacement - $18.44</option>
+                            <option value="9.99"> Wiper Fluid Refill - $9.99</option>
+                        </select><br>
+                        <i id="cart-message">To view your shopping cart click on the cart icon</i>
+                        </div>
+                        <div class="form-field">
+                        <button type="submit" class="btn btn-primary full-width" id="btnAddProduct">Add Product</button>
+                        </div>
+                   </div>
+                   </div>
+                   </div>
+                   <a href="/index.html">Return Home</a>
+                   <div class="card">
+                    <div class="card-title">Shopping Cart</div>
+                    <div class="card-content" id="shoppingCart">
+                     
+                    </div>
+                </div>
+            </div>
+
+    </div>
+
+    <script>
+        setDefaultTheme(); // To set default theme to light if one is not set in the browsers localStorage
+        /**
+        * Function to switch the users selected website theme	
+        */
+        function toggleMode(x) { 
+            let colorTheme = document.body.classList; 
+            let iconMode = x.classList; 
+    
+            /**
+             If current body class is set to light-theme, update to preference dark-theme in browsers local storage 
+            */
+            if (colorTheme.value === "light-theme") { 
+                localStorage.clear(); // Clears local storage
+                localStorage.setItem("mode", "dark-theme"); // Sets to dark theme
+                localStorage.setItem("iconMode", "fa-toggle-on"); // Toggles icon mode
+                localStorage.setItem("iconText", "Dark Mode"); //Toggles page to dark mode
+            } else {
+            /**
+             If current body class is set to dark-theme, update the user's preference to the light-theme in browsers local storage
+            */
+                localStorage.clear(); // Begins by clearing local storage
+                localStorage.setItem("mode", "light-theme"); // Sets to light-theme
+                localStorage.setItem("iconMode", "fa-toggle-off"); // Toggles icon mode to light
+                localStorage.setItem("iconText", "Light Mode"); // Toggles page to light mode
+            }
+    
+            /**
+            * Apply the updated selection to the HTML page elements
+            */
+            colorTheme.value = localStorage.getItem("mode"); // Applies new mode to html page
+            iconMode.value = `fa ${localStorage.getItem("iconMode")} pull-right`; 
+            document.getElementById("icon-text").innerHTML = localStorage.getItem("iconText"); // Stores in local storage
+        }
+    </script> 
+    <script type="module">
+
+    import { Product } from "./product.js"
+    import { ShoppingCart } from "./shopping-cart.js"
+    
+
+    // Instantiate (define a instance of the class ShoppingCart) a new shoppingCart object and assign it to a variable named shoppingCart 
+    const shoppingCart = new ShoppingCart();
+
+    // Call the setCartCount() function
+    setCartCount();
+
+    // Register onclick event for the btnAddProduct element
+    document.getElementById('btnAddProduct').addEventListener("click", function() {
+    
+    let productList = document.getElementById("productList");
+    let product = productList.options[productList.selectedIndex].text;
+    let productValue = productList.options[productList.selectedIndex].value;
+
+     // Check if the selected product is not "--Select--"
+    if (product !== "--Select--") {
+    // Add the product to the shopping cart
+    shoppingCart.add(new Product(product, productValue));
+    setCartCount();
+    // Alert message
+    alert(`${product} was added to your shopping cart!`);
+    // Reset the productList value to "--Select--"
+    productList.value = "Select";
+  }
+});
+
+// Register onclick event for the cartIcon element
+document.getElementById('cartIcon').addEventListener("click", function() {
+    let cartDisplayTable = `<table class="table"><tr><th>ID</th><th>Name</th><th>Price</th>`;
+
+  // Iterate over the ShoppingCart object
+  for (let product of shoppingCart) {
+    cartDisplayTable += 
+    `<tr>
+        <td>${product.id}</td>
+        <td>${product.name}</td>
+        <td>${product.price}</td>
+    </tr>`
+  }
+
+  // Close the table structure
+  cartDisplayTable += '</table>'
+
+  // Bind the table structure to the shoppingCart div's innerHTML
+  document.getElementById('shoppingCart').innerHTML = cartDisplayTable;
+});
+
+const setCartCount = () => {
+    document.getElementById('cart-count').innerHTML = shoppingCart.count();
+}
+    setCartCount();   
+    </script>
+</body>
+</html>
