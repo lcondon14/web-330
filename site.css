@@ -11,6 +11,7 @@
 .return-home {
     color:#4F3674;
     text-decoration: none;
+   
 }
 
 .return-home:hover {
@@ -46,7 +47,7 @@
 
 /** Additional styles added for Assignment 1.2 */
 
-#container {
+.assign-container {
     margin-top: 50px;
     margin-left: 100px;
     margin-right: 100px;
@@ -65,7 +66,10 @@
 }
 
 .assign-container {
+    margin: auto;
     padding: 10px;
+    width: 600px;
+    text-align:center;
 }
 
 .assign-content {
@@ -78,3 +82,27 @@
     font-size: 28px;
 }
 
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 30px;
+  }
+  
+  table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4F3674;
+  color: white;
+  }
+  
+  table td, table th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  table tr:hover {
+    background-color: #D6a800;
+    color: #4f3674;
+    cursor: pointer;
+  }
