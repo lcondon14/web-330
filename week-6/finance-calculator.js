@@ -1,4 +1,4 @@
-class FinancanceCalculator {
+class FinanceCalculator {
     static MONTHS_IN_YEAR = 12;
 
     static calculatorFutureValue(monthlyPayment, rate, years) {
@@ -18,4 +18,4 @@ class FinancanceCalculator {
     }
 }
 
-module.exports = FinancanceCalculator;
+module.exports = FinanceCalculator;
