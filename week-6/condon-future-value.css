@@ -1,0 +1,18 @@
+/*
+Title: condon-future-value.css;
+Author: Laurel Condon;
+Date: 1 July 2023;
+Description: CSS Future Value;
+*/
+
+.danger {
+    float: ;
+    color: #df546a;
+    font-size: 12px;
+    letter-spacing: 2px;
+}
+
+.form-label {
+    display: inline-block;
+    padding-top: 1rem;
+}

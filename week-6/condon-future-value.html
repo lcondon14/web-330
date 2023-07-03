@@ -1,0 +1,204 @@
+<!-- 
+    Title: condon-future-value.html
+    Author: Laurel Condon
+    Date: 1 July 2023
+    Description: HTML page for Future Value
+-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript II: Bob's Auto Repair</title>
+
+
+        <!-- Link to external stylesheets, Google Fonts, and Font Awesome -->
+        <link href="../site.css" rel="stylesheet" type="text/css">
+        <link href="../theme.css" rel="stylesheet" type="text/css">
+        <link href="condon-future-value.css" rel="stylesheet" type="text/css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="../theme.js"></script>
+        <script src="validator.js"></script>
+        <script src="finance-calculator.js"></script>
+</head>
+<body class="light-theme">
+    <!-- Displays light and dark themes -->
+    <i onclick="toggleMode(this)" id="icon-mode" class="fa fa-toggle-off pull-right"
+        style="font-size: 28px;"><span id="icon-text"></span></i><br>
+    <div class="assign-container">
+        <div class="app-header">Welcome to the Future Value App!</div><br>
+          <div class="assign-content">  
+        <div class="card">
+                <div class="card-title">Future Value Calculator</div>
+                <div class="card-content">
+                    <div class="form">
+                        <div class="form-field">
+
+                    <div class="row">
+                        <div class="col-12 danger" id="errorLog"></div>
+                    </div>
+
+                    <div class="row">
+
+                        <label class="col-5 form-field form-label" for="listNumOfYears">Number of Years;</label>
+                        <select id="listNumOfYears" name="listNumOfYears" class="drop-down-menu col-7">
+                            <option value="1">1 Year</option>
+                            <option value="2">2 Years</option>
+                            <option value="3">3 Years</option>
+                            <option value="4">4 Years</option>
+                            <option value="5">5 Years</option>
+                            <option value="6">6 Years</option>
+                            <option value="7">7 Years</option>
+                            <option value="8">8 Years</option>
+                            <option value="9">9 Years</option>
+                            <option value="10">10 Years</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    
+                        <label class="col-5 form-field form-label" for="txtMonthlyPayment">Monthly Payment:</label>
+                        <input type="text" class="form-field col-7" id="txtMonthlyPayment">
+        
+                </div><br>
+
+                <div class="row">
+                        <label class="col-5 form-field form-label" for="txtYearlyRate">Interest Rate:</label>
+                        <input type="text" class="form-field col-7" id="txtYearlyRate">
+                    </div>
+
+                    <div class="col-12">
+                        <i class="danger">Enter 11% as 11.1:</i><br>
+                    </div>
+        
+
+                <div class="form-field">
+                 <button id="btnCalculate" class="btn btn-primary">Calculate</button>
+                    </div>
+                </div>
+                </div>
+                </div>
+            
+            <a href="../index.html">Return Home</a>
+
+            <div class="assign-content">
+                <div class="card"></div>
+                <div class="card-title">Calculation as of <span id="today"></span></div>
+                <div class="card-content" id="futureValue"></div>
+            </div>
+             </div>
+             </div>
+
+        <script>
+            setDefaultTheme(); // To set default theme to light if one is not set in the browsers localStorage
+            /**
+            * Function to switch the users selected website theme	
+            */
+            function toggleMode(x) { 
+                let colorTheme = document.body.classList; 
+                let iconMode = x.classList; 
+        
+                /**
+                 If current body class is set to light-theme, update to preference dark-theme in browsers local storage 
+                */
+                if (colorTheme.value === "light-theme") { 
+                    localStorage.clear(); // Clears local storage
+                    localStorage.setItem("mode", "dark-theme"); // Sets to dark theme
+                    localStorage.setItem("iconMode", "fa-toggle-on"); // Toggles icon mode
+                    localStorage.setItem("iconText", "Dark Mode"); //Toggles page to dark mode
+                } else {
+                /**
+                 If current body class is set to dark-theme, update the user's preference to the light-theme in browsers local storage
+                */
+                    localStorage.clear(); // Begins by clearing local storage
+                    localStorage.setItem("mode", "light-theme"); // Sets to light-theme
+                    localStorage.setItem("iconMode", "fa-toggle-off"); // Toggles icon mode to light
+                    localStorage.setItem("iconText", "Light Mode"); // Toggles page to light mode
+                }
+        
+                /**
+                * Apply the updated selection to the HTML page elements
+                */
+                colorTheme.value = localStorage.getItem("mode"); // Applies new mode to html page
+                iconMode.value = `fa ${localStorage.getItem("iconMode")} pull-right`; 
+                document.getElementById("icon-text").innerHTML = localStorage.getItem("iconText"); // Stores in local storage
+            }
+        </script> 
+    
+
+
+<script type="module">
+
+"use-strict";
+
+import { Validator } from "./validator.js";
+import { FinanceCalculator } from "./finance-calculator.js";
+
+const todayEl = document.getElementById("today");
+const currentDate = new Date();
+todayEl.innerHTML = currentDate.toLocaleDateString("en-US");
+
+const calculateBtn = document.getElementById("btnCalculate");
+calculateBtn.addEventListener("click", calculateFutureValue);
+
+function calculateFutureValue() {
+  // Retrieve input values
+  const monthlyPayment = parseFloat(document.getElementById("txtMonthlyPayment").value);
+  const rate = parseFloat(document.getElementById("txtYearlyRate").value);
+  const years = parseInt(document.getElementById("listNumOfYears").value);
+
+  // Create validators
+  const monthlyPaymentValidator = new Validator("Monthly Payment", monthlyPayment);
+  monthlyPaymentValidator.addRequiredField();
+  monthlyPaymentValidator.addRequiredFloatField();
+  monthlyPaymentValidator.addFloatMinField(100);
+
+  const rateValidator = new Validator("Interest Rate", rate);
+  rateValidator.addRequiredField();
+  rateValidator.addRequiredFloatField();
+  rateValidator.addFloatMaxField(100);
+
+  // Validate input values
+  const errorLog = [];
+
+  if (!monthlyPaymentValidator.validate()) {
+    for (const message of monthlyPaymentValidator.messages) {
+      errorLog.push(message);
+    }
+  }
+
+  if (!rateValidator.validate()) {
+    for (const message of rateValidator.messages) {
+      errorLog.push(message);
+    }
+  }
+
+  // Check validation results
+  if (monthlyPaymentValidator.validate() && rateValidator.validate()) {
+    // Clear error log
+    errorLogEl.innerHTML = "";
+
+    // Calculate future value
+    const futureValue = FinanceCalculator.calculateFutureValue(monthlyPayment, rate, years);
+
+    // Bind result to futureValue div
+    const futureValueEl = document.getElementById("futureValue");
+    futureValueEl.innerHTML = futureValue;
+  } else {
+    // Display error messages
+    errorLogEl.innerHTML = errorLog.join("<br>");
+  }
+}
+
+
+</script>
+
+</body>
+</html>
