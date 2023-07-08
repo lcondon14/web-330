@@ -1,0 +1,115 @@
+<!-- 
+    Title: condon-whatabook1.html
+    Author: Laurel Condon
+    Date: 6 July 2023
+    Description: HTML page for whatabook
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript II: Future Value App</title>
+
+
+        <!-- Link to external stylesheets, Google Fonts, and Font Awesome -->
+        <link href="../site.css" rel="stylesheet" type="text/css">
+        <link href="../theme.css" rel="stylesheet" type="text/css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script scr="../theme.js"></script>
+</head>
+<body class="light-theme">
+    <!-- Displays light and dark themes -->
+    <i onclick="toggleMode(this)" id="icon-mode" class="fa fa-toggle-off pull-right"
+        style="font-size: 28px;"><span id="icon-text"></span></i><br>
+    <div class="assign-container">
+    <h1 class="app-header">Welcome to the WhatABook, Part 1 App!</h1>
+    <div class="assign-content">
+    <div class="card">
+        <div class="card-title">Book Listing</div>
+        <div class="card-content" id="bookList"></div><br>
+             </div>  
+             <a href="../index.html" class="return-home">Return</a>
+    </div>
+    <div class="assign-container">
+        <div class="assign-content">
+            <div class="card">
+                <div class="card-title">Selected Book</div>
+                <div class="card-content" id="selectedBook">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script>
+        function loadBooks(xml) {
+            let books = xml.getElementsByTagName('book');
+            let tableData = `<table class='table table-hover' id='bookTable'>`;
+            tableData += `<tr>`;
+            tableData += `<th>ISBN</th>`;
+            tableData += `<th>Title</th>`;
+            tableData += `<th>Description</th>`;
+            tableData += `<th>Pages</th>`;
+            tableData += `<th>Author</th>`;
+            tableData += `</tr>`;
+            for (const book of books) {
+                let isbn = book.getElementsByTagName('isbn')[0].childNodes[0].nodeValue;
+                let title = book.getElementsByTagName('title')[0].childNodes[0].nodeValue;
+                let description = book.getElementsByTagName('description')[0].childNodes[0].nodeValue;
+                let pages = book.getElementsByTagName('pages')[0].childNodes[0].nodeValue;
+                let author = book.getElementsByTagName('author')[0].childNodes[0].nodeValue;
+                tableData += `<tr><td data-value='ISBN'><a href='#' class='isbn-link'>${isbn}</a></td><td data-value='Title'>${title}</td>
+                    <td data-value='Description'>${description}</td><td data-value='Pages'>${pages}</td><td data-value='Author'>${author}</td></tr>`;
+            }
+            tableData += `</table>`;
+            document.getElementById('bookList').innerHTML = tableData;
+        };
+
+        function anchorClicked(e) {
+            e.preventDefault();
+
+            let self = this;
+            let cell = self.parentElement;
+            let row = cell.parentElement;
+
+            let data = row.querySelectorAll('td');
+
+
+            let bookData = `<ul style='list-style-type:none'>`;
+            let index = 0;
+            for (const field of data) {
+                bookData += `<li><b>${field.dataset.value}:</b> ${data[index].innerHTML}</li>`;
+                index++;
+            }
+            bookData += `</ul>`;
+
+            document.getElementById('selectedBook').innerHTML = bookData;
+        };
+
+        function addIsbnClickEvents() {
+            let viewButtons = document.querySelectorAll('#bookTable tbody .isbn-link');
+            for (let index = 0; index < viewButtons.length; index++) {
+                viewButtons[index].addEventListener('click', anchorClicked);
+            }
+        };
+
+        document.addEventListener('DOMContentLoaded', function() {
+            let fileName = 'books.xml';
+            fetch(fileName)
+                .then(res => res.text())
+                .then(data => {
+                    let domParser = new DOMParser();
+                    let xmlBooks = domParser.parseFromString(data, 'text/xml');
+                    loadBooks(xmlBooks);
+                    addIsbnClickEvents();
+                });
+        });
+      </script>
+</body>
+</html>
