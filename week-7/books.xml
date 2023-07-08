@@ -12,7 +12,7 @@
         <description>N/A</description>
         <pages>287</pages>
         <author>J.R.R. Tolkien</author>
-    <book>
+    </book>
 
     <book>
         <isbn>9780261103573</isbn>
@@ -20,7 +20,7 @@
         <description>Bing the First Part of the Lord of the Rings</description>
         <pages>416</pages>
         <author>J.R.R Tolkien</author>
-    <book>
+    </book>
 
    <book>
         <isbn>9780261102361</isbn>
@@ -28,7 +28,7 @@
         <description>Being the Second Part of the Lord of the Rings</description>
         <pages>442</pages>
         <author>J.R.R. Tolkien</author>
-    <book>
+    </book>
 
    <book>
         <isbn>9780261102378</isbn>
@@ -36,7 +36,7 @@
         <description>Being the third part of the Lord of the Rings</description>
         <pages>556</pages>
         <author>J.R.R Tolkein</author>
-    <book>
+    </book>
 
    <book>
         <isbn>9780593099322</isbn>
@@ -44,7 +44,7 @@
         <description>N/A</description>
         <pages>688</pages>
         <author>Frank Herber</author>
-    <book>
+    </book>
 
    <book>
         <isbn>9780316769532</isbn>
@@ -52,6 +52,6 @@
         <description>N/A</description>
         <pages>277</pages>
         <author>J.D. Salinger</author>
-    <book>            
+    </book>            
 </books>
 
